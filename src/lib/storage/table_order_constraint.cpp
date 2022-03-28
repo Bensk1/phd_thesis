@@ -18,4 +18,13 @@ bool TableOrderConstraint::_on_equals(const AbstractTableConstraint& table_const
   return _determinants == other.determinants() && _dependents == other.dependents();
 }
 
+size_t TableOrderConstraint::size() const {
+  size_t size = 0;
+  size += sizeof(AbstractTableConstraint);
+  size += sizeof(std::vector<ColumnID>) + (sizeof(ColumnID) * _determinants.size());
+  size += sizeof(std::vector<ColumnID>) + (sizeof(ColumnID) * _dependents.size());
+
+  return size;
+}
+
 }  // namespace opossum

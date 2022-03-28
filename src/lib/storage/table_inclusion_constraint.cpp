@@ -18,6 +18,15 @@ bool TableInclusionConstraint::_on_equals(const AbstractTableConstraint& table_c
   return _determinants == other.determinants() && _dependents == other.dependents();
 }
 
+size_t TableInclusionConstraint::size() const {
+  size_t size = 0;
+  size += sizeof(AbstractTableConstraint);
+  size += sizeof(std::vector<TableColumnID>) + (sizeof(TableColumnID) * _determinants.size());
+  size += sizeof(std::vector<ColumnID>) + (sizeof(ColumnID) * _dependents.size());
+
+  return size;
+}
+
 std::ostream& operator<<(std::ostream& stream, const TableInclusionConstraint& expression) {
   stream << "{";
   const auto& determinants = expression.determinants();

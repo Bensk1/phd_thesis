@@ -2,7 +2,9 @@
 [![Coverage Status](https://hyrise-coverage-badge.herokuapp.com/coverage_badge.svg)](https://hyrise-ci.epic-hpi.de/job/Hyrise/job/hyrise/job/master/lastStableBuild/Llvm-cov_5fReport/)
 [![CodeFactor](https://www.codefactor.io/repository/github/hyrise/hyrise/badge)](https://www.codefactor.io/repository/github/hyrise/hyrise)
 
-# Workload-driven discovery and utilization of data dependencies
+# Unsupervised Database Optimization: Data Dependency-Driven Query Optimization
+
+Source code for the experiments presented in Chapter 8 of Jan Kossmann's PhD thesis *Unsupervised Database Optimization: Efficient Index Selection & Data Dependency-driven Query Optimization*. For executing the experiments, consider the scripts [run_dependency_configs.py](https://github.com/Bensk1/phd_thesis/blob/main/scripts/run_dependency_configs.py) and [compare_benchmarks_improved.py](https://github.com/Bensk1/phd_thesis/blob/main/scripts/compare_benchmarks_improved.py) in the *scripts* folder.
 
 The relevant binary targets are `hyriseBenchmarkJoinOrder`, `hyriseBenchmarkTPCDS`, `hyriseBenchmarkTPCH` for the benchmarks and `hyriseDependencyMiningPlugin` for the plugin. For general build instructions, consider the detailed instructions below. We adjusted the Hyrise BenchmarkRunner to load the plugin if its path is provided as a command line parameter, e.g., `./cmake-build-release/hyriseBenchmarkTPCDS -r 1 --dep_mining_plugin /home/ExampleUser/hyrise/cmake-build-release/lib/libhyriseDependencyMiningPlugin.so`
 

@@ -17,6 +17,8 @@ class TableInclusionConstraint final : public AbstractTableConstraint {
   const std::vector<TableColumnID>& determinants() const;
   const std::vector<ColumnID>& dependents() const;
 
+  size_t size() const override;
+
  protected:
   bool _on_equals(const AbstractTableConstraint& table_constraint) const override;
 

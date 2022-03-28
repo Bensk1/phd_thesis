@@ -13,4 +13,12 @@ bool TableKeyConstraint::_on_equals(const AbstractTableConstraint& table_constra
   return key_type() == static_cast<const TableKeyConstraint&>(table_constraint).key_type();
 }
 
+size_t TableKeyConstraint::size() const {
+  size_t size = 0;
+  size += sizeof(AbstractTableConstraint);
+  size += sizeof(KeyConstraintType);
+
+  return size;
+}
+
 }  // namespace opossum

@@ -28,6 +28,9 @@ class DependencyValidator {
   std::atomic_bool _running = false;
   const size_t _id;
   std::shared_ptr<ValidationState> _validation_state;
+
+  size_t _constraints_num = 0;
+  size_t _size = 0;
 };
 
 }  // namespace opossum

@@ -24,6 +24,8 @@ class AbstractTableConstraint {
 
   virtual ~AbstractTableConstraint() = default;
 
+  virtual size_t size() const = 0;
+
   const std::unordered_set<ColumnID>& columns() const;
 
   TableConstraintType type() const;

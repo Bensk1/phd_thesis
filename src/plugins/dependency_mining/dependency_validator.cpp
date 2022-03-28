@@ -49,7 +49,12 @@ void DependencyValidator::start() {
            << std::endl;
     std::cout << my_out.rdbuf();
   }
+
+  std::cout << _constraints_num  << " constraints consume " << _size << " bytes." << std::endl;
+
   std::cout << "DependencyValidator " + std::to_string(_id) + " finished in " + timer.lap_formatted() + "\n";
+
+  Fail("Stop here!");
 }
 
 void DependencyValidator::stop() { _running = false; }
@@ -59,9 +64,12 @@ void DependencyValidator::add_rule(std::unique_ptr<AbstractDependencyValidationR
 }
 
 void DependencyValidator::_add_constraints(
-    const std::string& table_name, const std::vector<std::shared_ptr<AbstractTableConstraint>>& constraints) const {
+    const std::string& table_name, const std::vector<std::shared_ptr<AbstractTableConstraint>>& constraints) {
   const auto& table = Hyrise::get().storage_manager.get_table(table_name);
+
   for (const auto& constraint : constraints) {
+    _size += constraint->size();
+    _constraints_num++;
     switch (constraint->type()) {
       case TableConstraintType::Key:
         table->add_soft_key_constraint(dynamic_cast<const TableKeyConstraint&>(*constraint));
